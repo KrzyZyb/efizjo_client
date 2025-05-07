@@ -24,8 +24,13 @@ jobs:
       - name: Build Angular project
         run: npm run build -- --configuration production --base-href=/efizjo_client/
 
+      - name: Move contents from /browser to root
+        run: |
+          mv dist/efizjo_client/browser/* dist/efizjo_client/
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: dist/efizjo_client
+          
